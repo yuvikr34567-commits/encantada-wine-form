@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wine Tasting Order Form - Mouton Noir</title>
+    <title>Wine Order - Encantada</title>
     <style>
         * {
             margin: 0;
@@ -34,17 +34,25 @@
             border-bottom: 3px solid #8b7355;
         }
         
-        .logo {
-            font-size: 2.5em;
-            color: #8b7355;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .mouton-logo {
+            max-width: 350px;
+            height: auto;
+            margin: 0 auto 20px;
+            display: block;
         }
         
         .subtitle {
             font-size: 1.8em;
             color: #333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .encantada-logo {
+            max-width: 120px;
+            height: auto;
+            margin: 20px auto 0;
+            display: block;
         }
         
         .location-info {
@@ -53,19 +61,25 @@
             border-radius: 8px;
             margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .location-info .e-logo {
+            max-width: 50px;
+            height: auto;
         }
         
         .location-info p {
-            margin: 5px 0;
+            margin: 0;
             color: #555;
+            font-size: 1.1em;
         }
         
         .date-fixed {
             font-weight: bold;
             color: #8b7355;
+            margin-left: auto;
         }
         
         .form-section {
@@ -249,12 +263,16 @@
                 padding: 20px;
             }
             
-            .logo {
-                font-size: 2em;
+            .mouton-logo {
+                max-width: 250px;
             }
             
             .subtitle {
                 font-size: 1.4em;
+            }
+            
+            .encantada-logo {
+                max-width: 80px;
             }
             
             .wine-table {
@@ -285,12 +303,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🍷 Mouton Noir Wine Group</div>
-            <div class="subtitle">WINE TASTING ORDER FORM</div>
+            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/6acccab2-3e41-44d6-86bc-b0d17ade17ec/2026-01-18T19-01-03-430Z-98f58fa7-chat-image-1768762863409-1.jpg" alt="Mouton Noir Wine Group" class="mouton-logo">
+            <div class="subtitle">WINE ORDER</div>
+            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/6acccab2-3e41-44d6-86bc-b0d17ade17ec/2026-01-18T19-01-03-281Z-b19be7c1-chat-image-1768762863261-0.jpg" alt="Encantada" class="encantada-logo">
         </div>
         
         <div class="location-info">
-            <p><strong>Location:</strong> ENCANTADA</p>
+            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/6acccab2-3e41-44d6-86bc-b0d17ade17ec/2026-01-18T19-01-03-281Z-b19be7c1-chat-image-1768762863261-0.jpg" alt="E" class="e-logo">
+            <p><strong>Encantada</strong></p>
             <p class="date-fixed"><strong>Date:</strong> <input type="date" id="orderDate" style="display: inline-block; width: auto; padding: 5px; border: 2px solid #8b7355; border-radius: 5px;" required></p>
         </div>
         
@@ -312,18 +332,6 @@
                 <div class="form-group">
                     <label for="address">Delivery Address: *</label>
                     <input type="text" id="address" name="address" value="Esterillos Este, Puntarenas" required>
-                </div>
-                <div class="form-group">
-                    <label for="addressDesc">Address Description:</label>
-                    <textarea id="addressDesc" name="addressDesc"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="town">Town: *</label>
-                    <input type="text" id="town" name="town" required>
-                </div>
-                <div class="form-group">
-                    <label for="security">Security Guard:</label>
-                    <input type="text" id="security" name="security" placeholder="Security to receive packages?">
                 </div>
             </div>
             
@@ -429,9 +437,6 @@
                     <strong>SINPE:</strong> 8365-8812
                 </div>
                 <div class="payment-option">
-                    <strong>Zelle:</strong> 917-328-4445
-                </div>
-                <div class="payment-option">
                     <strong>USD IBAN (Scotia):</strong> CR15 0123 0002 5010 2449 81
                 </div>
                 <div class="payment-option">
@@ -498,18 +503,16 @@
             
             // Collect order data
             const formData = {
-                date: orderDate,
                 name: document.getElementById('name').value,
                 phone: document.getElementById('phone').value,
                 email: document.getElementById('email').value,
                 address: document.getElementById('address').value,
-                addressDesc: document.getElementById('addressDesc').value,
-                town: document.getElementById('town').value,
-                security: document.getElementById('security').value,
                 wines: [],
                 subtotal: document.getElementById('subtotal').textContent,
                 discount: document.getElementById('discount').textContent,
-                total: document.getElementById('total').textContent
+                total: document.getElementById('total').textContent,
+                date: orderDate,
+                location: 'ENCANTADA'
             };
             
             // Collect wine orders
@@ -533,15 +536,12 @@
             }
             
             // Create message for WhatsApp
-            let message = `🍷 *WINE ORDER - ENCANTADA*\\n\\n`;
-            message += `*Date:* ${formData.date}\\n`;
+            let message = `🍷 *WINE ORDER - ${formData.location}*\\n`;
+            message += `*Date:* ${formData.date}\\n\\n`;
             message += `*Customer:* ${formData.name}\\n`;
             message += `*Phone:* ${formData.phone}\\n`;
             message += `*Email:* ${formData.email}\\n`;
             message += `*Address:* ${formData.address}\\n`;
-            if (formData.addressDesc) message += `*Description:* ${formData.addressDesc}\\n`;
-            message += `*Town:* ${formData.town}\\n`;
-            if (formData.security) message += `*Security:* ${formData.security}\\n`;
             message += `\\n*WINES:*\\n`;
             formData.wines.forEach(wine => {
                 message += `• ${wine.name} x${wine.quantity} = ${wine.subtotal}\\n`;
