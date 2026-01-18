@@ -552,8 +552,7 @@
             message += `_____________________________\n\n`;
             message += `*Subtotal:* ${formData.subtotal}\n`;
             message += `*15% OFF:* ${formData.discount}\n`;
-            message += `*TOTAL:* ${formData.total}\n\n`;
-            message += `Payment can be arranged separately.`;
+            message += `*TOTAL:* ${formData.total}`;
             
             // Encode message for WhatsApp
             const encodedMessage = encodeURIComponent(message);
