@@ -419,7 +419,7 @@
                     <span id="subtotal">CRC 0</span>
                 </div>
                 <div class="total-row">
-                    <span>10% OFF:</span>
+                    <span>15% OFF:</span>
                     <span id="discount">CRC 0</span>
                 </div>
                 <div class="total-row final">
@@ -477,7 +477,7 @@
                 subtotal += itemSubtotal;
             });
             
-            const discount = subtotal * 0.10;
+            const discount = subtotal * 0.15;
             const total = subtotal - discount;
             
             document.getElementById('subtotal').textContent = 'CRC ' + formatCRC(subtotal);
@@ -547,7 +547,7 @@
                 message += `• ${wine.name} x${wine.quantity} = ${wine.subtotal}\\n`;
             });
             message += `\\n*Subtotal:* ${formData.subtotal}\\n`;
-            message += `*10% OFF:* ${formData.discount}\\n`;
+            message += `*15% OFF:* ${formData.discount}\\n`;
             message += `*TOTAL:* ${formData.total}`;
             
             // Encode message for WhatsApp
