@@ -326,8 +326,8 @@
                     <input type="tel" id="phone" name="phone" value="(506) 6038-2574" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email: *</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
                 </div>
                 <div class="form-group">
                     <label for="address">Delivery Address: *</label>
@@ -535,20 +535,25 @@
                 return;
             }
             
-            // Create message for WhatsApp
-            let message = `🍷 *WINE ORDER - ${formData.location}*\\n`;
-            message += `*Date:* ${formData.date}\\n\\n`;
-            message += `*Customer:* ${formData.name}\\n`;
-            message += `*Phone:* ${formData.phone}\\n`;
-            message += `*Email:* ${formData.email}\\n`;
-            message += `*Address:* ${formData.address}\\n`;
-            message += `\\n*WINES:*\\n`;
+            // Create message for WhatsApp with proper formatting
+            let message = `🍷 *WINE ORDER - ${formData.location}*\n`;
+            message += `*Date:* ${formData.date}\n\n`;
+            message += `◆ *CUSTOMER INFORMATION*\n`;
+            message += `*Name:* ${formData.name}\n`;
+            message += `*Phone:* ${formData.phone}\n`;
+            if (formData.email) message += `*Email:* ${formData.email}\n`;
+            message += `*Address:* ${formData.address}\n`;
+            message += `\n◆ *WINE ORDER*\n`;
+            message += `_____________________________\n\n`;
             formData.wines.forEach(wine => {
-                message += `• ${wine.name} x${wine.quantity} = ${wine.subtotal}\\n`;
+                message += `*${wine.name}*\n`;
+                message += `CRC ${wine.price} x ${wine.quantity} = ${wine.subtotal}\n\n`;
             });
-            message += `\\n*Subtotal:* ${formData.subtotal}\\n`;
-            message += `*15% OFF:* ${formData.discount}\\n`;
-            message += `*TOTAL:* ${formData.total}`;
+            message += `_____________________________\n\n`;
+            message += `*Subtotal:* ${formData.subtotal}\n`;
+            message += `*15% OFF:* ${formData.discount}\n`;
+            message += `*TOTAL:* ${formData.total}\n\n`;
+            message += `Payment can be arranged separately.`;
             
             // Encode message for WhatsApp
             const encodedMessage = encodeURIComponent(message);
