@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encantada Wine Order Form - Mouton Noir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #333;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-text {
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo-decorative-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .leaf-icon {
+            color: #c9a961;
+            font-size: 2em;
+        }
+        
+        .swirl-pattern {
+            color: #c9a961;
+            font-size: 2.5em;
+            line-height: 1;
+            letter-spacing: -8px;
+        }
+        
+        .logo-main {
+            font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+            font-size: 4em;
+            color: #2c2c2c;
+            font-weight: bold;
+            font-style: italic;
+            line-height: 1;
+            margin: 5px 0;
+        }
+        
+        .logo-subtitle {
+            color: #c9a961;
+            font-size: 1.4em;
+            letter-spacing: 10px;
+            font-weight: normal;
+            margin-top: 5px;
+        }
+        
+        .sheep-logo {
+            width: 120px;
+            height: auto;
+        }
+        
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #2c2c2c;
+            text-transform: uppercase;
+        }
+        
+        .info-section {
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 15px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #2c2c2c;
+            text-align: left;
+        }
+        
+        .info-input {
+            padding: 8px 12px;
+            border: 2px solid #333;
+            border-radius: 0;
+            font-size: 16px;
+        }
+        
+        .info-input.highlight {
+            background: #ffff00;
+        }
+        
+        .info-value {
+            padding: 8px 12px;
+            border: 2px solid #333;
+            background: #f0f0f0;
+        }
+        
+        .wine-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .wine-table th {
+            background: white;
+            color: #2c2c2c;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid #333;
+            font-size: 1.1em;
+        }
+        
+        .wine-table td {
+            padding: 10px;
+            border: 2px solid #333;
+            text-align: center;
+        }
+        
+        .wine-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .qty-input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #333;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .total-section {
+            margin: 30px 0;
+            text-align: right;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+            margin: 10px 0;
+        }
+        
+        .total-label {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .total-value {
+            width: 150px;
+            padding: 10px;
+            border: 2px solid #333;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .contact-info {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+            font-size: 1.1em;
+        }
+        
+        .contact-info p {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .logo-main {
+                font-size: 2.5em;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .sheep-logo {
+                width: 80px;
+            }
+            
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .wine-table {
+                font-size: 14px;
+            }
+            
+            .wine-table th,
+            .wine-table td {
+                padding: 6px;
+            }
+            
+            .qty-input {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-text">
+                    <div class="logo-decorative-top">
+                        <span class="leaf-icon">🌿</span>
+                    </div>
+                    <div class="swirl-pattern">◠◡◠◡◠◡◠</div>
+                    <div class="logo-main">Mouton Noir</div>
+                    <div class="logo-subtitle">WINE GROUP</div>
+                </div>
+                <svg class="sheep-logo" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="60" rx="25" ry="30" fill="#2c2c2c"/>
+                    <circle cx="50" cy="35" r="15" fill="#2c2c2c"/>
+                    <ellipse cx="42" cy="28" rx="4" ry="8" fill="#2c2c2c"/>
+                    <ellipse cx="58" cy="28" rx="4" ry="8" fill="#2c2c2c"/>
+                    <circle cx="45" cy="35" r="2" fill="white"/>
+                    <circle cx="55" cy="35" r="2" fill="white"/>
+                    <rect x="38" y="85" width="5" height="20" fill="#2c2c2c"/>
+                    <rect x="57" y="85" width="5" height="20" fill="#2c2c2c"/>
+                    <path d="M 25 50 L 28 60 L 22 60 Z" fill="none" stroke="#2c2c2c" stroke-width="2"/>
+                    <line x1="25" y1="60" x2="25" y2="70" stroke="#2c2c2c" stroke-width="2"/>
+                    <line x1="22" y1="70" x2="28" y2="70" stroke="#2c2c2c" stroke-width="2"/>
+                    <rect x="70" y="45" width="8" height="20" fill="none" stroke="#2c2c2c" stroke-width="2"/>
+                    <rect x="71" y="42" width="6" height="5" fill="none" stroke="#2c2c2c" stroke-width="2"/>
+                    <line x1="30" y1="55" x2="25" y2="50" stroke="#2c2c2c" stroke-width="3"/>
+                    <line x1="70" y1="55" x2="74" y2="50" stroke="#2c2c2c" stroke-width="3"/>
+                </svg>
+            </div>
+            <div class="title">ENCANTADA WINE ORDER FORM</div>
+        </div>
+        
+        <form id="orderForm">
+            <div class="info-section">
+                <div class="info-label">Date:</div>
+                <input type="text" class="info-input highlight" id="date" name="date" placeholder="Enter date" required>
+                
+                <div class="info-label">Name:</div>
+                <div class="info-value">Encantada Ocean Cottages</div>
+                
+                <div class="info-label">Whatsapp:</div>
+                <div class="info-value">(506) 6038-2574</div>
+                
+                <div class="info-label">Delivery Address:</div>
+                <div class="info-value">Esterillos Este, Puntarenas</div>
+            </div>
+            
+            <table class="wine-table">
+                <thead>
+                    <tr>
+                        <th>Wine</th>
+                        <th>Unit Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="wineTable">
+                    <tr data-price="6300">
+                        <td>Mas Fi Cava</td>
+                        <td>CRC 6,300</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="Mas Fi Cava"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                    <tr data-price="5400">
+                        <td>La Playa Sauvignon Blanc</td>
+                        <td>CRC 5,400</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="La Playa Sauvignon Blanc"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                    <tr data-price="5085">
+                        <td>Rayun Chardonnay</td>
+                        <td>CRC 5,085</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="Rayun Chardonnay"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                    <tr data-price="5085">
+                        <td>Rayun Rose'</td>
+                        <td>CRC 5,085</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="Rayun Rose'"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                    <tr data-price="6215">
+                        <td>Callia Pinot Grigio</td>
+                        <td>CRC 6,215</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="Callia Pinot Grigio"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                    <tr data-price="5400">
+                        <td>La Playa Cabernet Sauvignon</td>
+                        <td>CRC 5,400</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="La Playa Cabernet Sauvignon"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                    <tr data-price="6215">
+                        <td>Portillo Malbec Organico</td>
+                        <td>CRC 6,215</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="Portillo Malbec Organico"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                    <tr data-price="8900">
+                        <td>Newen Pinot Noir</td>
+                        <td>CRC 8,900</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="Newen Pinot Noir"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                    <tr data-price="9720">
+                        <td>La Fuenta</td>
+                        <td>CRC 9,720</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="La Fuenta"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                    <tr data-price="11885">
+                        <td>Del Fin Del Mundo</td>
+                        <td>CRC 11,885</td>
+                        <td><input type="number" class="qty-input" min="0" value="0" data-wine="Del Fin Del Mundo"></td>
+                        <td class="subtotal-cell">CRC 0</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="total-section">
+                <div class="total-row">
+                    <span class="total-label">TOTAL</span>
+                    <div class="total-value" id="total">0</div>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">📱 Send Order via WhatsApp</button>
+        </form>
+        
+        <div class="contact-info">
+            <p>Wine rep: Cindy Lamb +1-917-328-4445 / +506-8792-4130</p>
+        </div>
+    </div>
+    
+    <script>
+        // Format number with thousand separators
+        function formatCRC(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        // Calculate totals
+        function calculateTotals() {
+            let total = 0;
+            
+            document.querySelectorAll('#wineTable tr').forEach(row => {
+                const price = parseFloat(row.dataset.price);
+                const qtyInput = row.querySelector('.qty-input');
+                const qty = parseInt(qtyInput.value) || 0;
+                const itemSubtotal = price * qty;
+                
+                row.querySelector('.subtotal-cell').textContent = 'CRC ' + formatCRC(itemSubtotal);
+                total += itemSubtotal;
+            });
+            
+            document.getElementById('total').textContent = formatCRC(total);
+        }
+        
+        // Add event listeners to all quantity inputs
+        document.querySelectorAll('.qty-input').forEach(input => {
+            input.addEventListener('input', calculateTotals);
+        });
+        
+        // Handle form submission
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const date = document.getElementById('date').value;
+            
+            if (!date) {
+                alert('Please enter a date.');
+                return;
+            }
+            
+            // Collect order data
+            const formData = {
+                date: date,
+                name: 'Encantada Ocean Cottages',
+                whatsapp: '(506) 6038-2574',
+                address: 'Esterillos Este, Puntarenas',
+                wines: [],
+                total: document.getElementById('total').textContent
+            };
+            
+            // Collect wine orders
+            document.querySelectorAll('.qty-input').forEach(input => {
+                const qty = parseInt(input.value) || 0;
+                if (qty > 0) {
+                    const row = input.closest('tr');
+                    formData.wines.push({
+                        name: input.dataset.wine,
+                        price: row.dataset.price,
+                        quantity: qty,
+                        subtotal: row.querySelector('.subtotal-cell').textContent
+                    });
+                }
+            });
+            
+            // Check if any wines were ordered
+            if (formData.wines.length === 0) {
+                alert('Please select at least one wine to order.');
+                return;
+            }
+            
+            // Create message for WhatsApp
+            let message = `🍷 *ENCANTADA WINE ORDER*\n\n`;
+            message += `*Date:* ${formData.date}\n`;
+            message += `*Name:* ${formData.name}\n`;
+            message += `*WhatsApp:* ${formData.whatsapp}\n`;
+            message += `*Address:* ${formData.address}\n\n`;
+            message += `*WINES:*\n`;
+            formData.wines.forEach(wine => {
+                message += `• ${wine.name} x${wine.quantity} = ${wine.subtotal}\n`;
+            });
+            message += `\n*TOTAL:* CRC ${formData.total}`;
+            
+            // Encode message for WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const phoneNumber = '19173284445'; // Cindy Lamb's number
+            
+            // Open WhatsApp with pre-filled message
+            window.location.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        });
+        
+        // Initial calculation
+        calculateTotals();
+    </script>
+</body>
+</html>
